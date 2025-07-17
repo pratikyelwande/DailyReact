@@ -1,14 +1,24 @@
-import React, { useEffect,useState } from "react";
+import React, { useRef, useState } from "react";
 
 const App = () => {
   const [count, setCount] = useState(0);
+  const intervalRef = useRef(); // Save interval ID here
 
-  useEffect(() => {
-    console.log(`Count changed to ${count}`);
-  }, []); // runs every time `count` changes
+  const start = () => {
+    intervalRef.current = setInterval(() => {
+      setCount((c) => c + 1);
+    }, 1000);
+  };
 
-  return <button onClick={() => setCount(count + 1)}>Click</button>;
+  const stop = () => {
+    clearInterval(intervalRef.current);
+  };
 
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={start}>Start</button>
+      <button onClick={stop}>Stop</button>
+    </div>)
 };
-
 export default App;
