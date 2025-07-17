@@ -1,24 +1,29 @@
-import { useState } from "react";
-
+import React, { useState } from "react";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-
-  const increment = () => {
-    setCount((count +1));
+  const [fruit, setFruit] = useState("");
+  const [fruits, setFruits] = useState([]);
+  const additem = () => {
+    if (fruit.trim() === "") return;
+    setFruits([...fruits, fruit]);
+    setFruit("");
   };
-  const decrement = () => {
-    if(count===0){
-      alert("value is zero cannot decrement.");
-    }
-    else{
-    setCount(count - 1);
-  }};
-  return(
+  return (
     <>
-    <h1>Counter:{count}</h1>
-    <button onClick={increment}>Increment</button>
-    <button onClick={decrement}>decrement</button>
+      <input
+        type="text"
+        placeholder="Enter a fruit name"
+        value={fruit}
+        onChange={(e) => {
+          setFruit(e.target.value);
+        }}
+      />
+      <button onClick={additem}>Add</button>
+      <ul>
+        {fruits.map((f, i) => (
+          <li key={i}>{f}</li>
+        ))}
+      </ul>
     </>
   );
 };
