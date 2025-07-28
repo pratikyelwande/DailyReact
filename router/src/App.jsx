@@ -1,19 +1,19 @@
 import { Routes, Route, Link } from "react-router-dom";
-import Home from "/Home";
-import Users from "./Users";
+import Login from "./login";
+import Dashboard from "./Dashboard";
 
 function App() {
   return (
     <div>
-      <nav className="p-4 bg-gray-200">
-        <Link to="/" className="mr-4">Home</Link>
-        <Link to="/users">Users</Link>
+      <nav className="p-4 bg-gray-100">
+        <Link to="/login" className="mr-4">Login</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </nav>
 
       <div className="p-4">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/users/*" element={<Users />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </div>
